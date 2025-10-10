@@ -19,6 +19,8 @@ interface Dictionary {
         "agreeToTerms": string,
         "termsOfService": string,
         "and": string,
-        "privacyPolicy": string
+        "privacyPolicy": string,
+        "userIdRequired": string,
+        "passwordRequired": string
     };
 }

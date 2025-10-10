@@ -19,6 +19,8 @@
     "agreeToTerms": "登录即表示您同意我们的 ",
     "termsOfService": "服务条款",
     "and": " 和 ",
-    "privacyPolicy": "隐私政策"
+    "privacyPolicy": "隐私政策",
+    "userIdRequired": "请输入正确的账号",
+    "passwordRequired": "请输入正确的密码"
   }
 }

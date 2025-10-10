@@ -8,19 +8,31 @@ import {Input} from "@/components/ui/input"
 import React, {useState} from "react";
 import {useDictionary} from "@/hooks/use-dictionary";
 import 'remixicon/fonts/remixicon.css'
+import {toast} from "sonner";
 
 export function LoginForm({className, ...props}: React.ComponentProps<"div">) {
     const {dict, loading} = useDictionary()
     const [userId, setUserId] = useState('')
     const [password, setPassword] = useState('')
 
-    if (loading || !dict) return null; else return (<div className={cn("flex flex-col gap-6", className)} {...props}>
+    if (loading || !dict) return null;
+
+    function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+        if (!userId.trim() || !password.trim()) {
+            if (!userId.trim()) toast.error(dict?.login.userIdRequired); else if (!password.trim()) toast.error(dict?.login.passwordRequired)
+            e.preventDefault();
+            return;
+        }
+        console.log("表单提交:", {userId, password});
+    }
+
+    return (<div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card>
             <CardHeader className="text-center">
                 <CardTitle className="text-xl">{dict.login.welcome}</CardTitle>
             </CardHeader>
             <CardContent>
-                <form>
+                <form onSubmit={handleFormSubmit}>
                     <FieldGroup>
                         <Field>
                             <FieldLabel htmlFor="userId">{dict.login.userId}</FieldLabel>
@@ -38,7 +50,8 @@ export function LoginForm({className, ...props}: React.ComponentProps<"div">) {
                                    onChange={(e) => setPassword(e.target.value)}/>
                         </Field>
                         <Field>
-                            <Button type="submit" variant={!userId.trim() || !password.trim()?"secondary":"default"} disabled={!userId.trim() || !password.trim()}>
+                            <Button type="submit" variant={!userId.trim() || !password.trim() ? "secondary" : "default"}
+                                    disabled={!userId || !password}>
                                 {dict.login.login}
                             </Button>
                             <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card my-2">
