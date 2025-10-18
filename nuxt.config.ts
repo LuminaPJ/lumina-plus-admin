@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: {enabled: true},
-    modules: ['shadcn-nuxt', '@nuxtjs/i18n', '@nuxtjs/color-mode', '@nuxtjs/tailwindcss', '@pinia/nuxt', '@pinia/nuxt'],
+    modules: ['shadcn-nuxt', '@nuxtjs/i18n', '@nuxtjs/color-mode', '@nuxtjs/tailwindcss', '@pinia/nuxt', '@nuxt/eslint'],
     shadcn: {
         prefix: '', componentDir: '~/components/ui'
     },
