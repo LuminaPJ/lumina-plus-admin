@@ -14,5 +14,10 @@ export default defineNuxtConfig({
     },
     colorMode: {
         classSuffix: ''
+    },
+    vue: {
+        compilerOptions: {
+            isCustomElement: (tag) => tag === 'altcha-widget'
+        }
     }
 })

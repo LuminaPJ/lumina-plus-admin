@@ -8,6 +8,7 @@ import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card"
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
 import 'remixicon/fonts/remixicon.css'
+import Altcha from "./Altcha.vue"
 
 const props = defineProps({
   class: {
@@ -19,9 +20,10 @@ const props = defineProps({
 const {t} = useI18n()
 const userId = ref('')
 const password = ref('')
+const altchaPayload = ref('')
 
 const isFormValid = computed(() => {
-  return userId.value.trim() && password.value.trim()
+  return userId.value.trim() && password.value.trim() && altchaPayload.value
 })
 
 const isFormEmpty = computed(() => {
@@ -38,6 +40,11 @@ function handleFormSubmit(e: Event) {
 
   if (!password.value.trim()) {
     toast.error(t('login.passwordRequired'))
+    return
+  }
+
+  if (!altchaPayload.value) {
+    toast.error(t('login.altchaRequired'))
     return
   }
 
@@ -71,8 +78,11 @@ function handleWechatLogin() {
                   {{ t('login.forgotPassword') }}
                 </a>
               </div>
-              <Input id="password" v-model="password" required type="password"/>
+              <Input id="password" v-model="password" :placeholder="t('login.passwordPlaceholder')" required type="password"/>
             </div>
+            <ClientOnly class="grid gap-4">
+              <Altcha v-model:payload="altchaPayload" />
+            </ClientOnly>
             <div class="grid gap-4">
               <Button :disabled="!isFormEmpty" :variant="isFormValid ? 'default' : 'secondary'" type="submit">
                 {{ t('login.login') }}

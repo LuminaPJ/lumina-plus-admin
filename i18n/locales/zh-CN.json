@@ -21,6 +21,7 @@
     "loginWithWeixin": "使用微信登录",
     "userId": "账号",
     "userIdPlaceholder": "请输入账号",
+    "passwordPlaceholder": "请输入密码",
     "password": "密码",
     "forgotPassword": "忘记密码？",
     "login": "登录",
@@ -31,6 +32,7 @@
     "and": " 和 ",
     "privacyPolicy": "隐私政策",
     "userIdRequired": "请输入正确的账号",
-    "passwordRequired": "请输入正确的密码"
+    "passwordRequired": "请输入正确的密码",
+    "altchaRequired": "请完成人机验证"
   }
 }
